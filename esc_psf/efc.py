@@ -29,10 +29,10 @@ def compute_jacobian(
         poke_command[M.dm_mask] = poke 
 
         M.set_dm(poke_command, channel=channel)
-        E_pos = M.calc_wf()
+        E_pos = M.calc_wfs_camsci(return_all=0)
 
         M.set_dm(-poke_command, channel=channel)
-        E_neg = M.calc_wf()
+        E_neg = M.calc_wfs_camsci(return_all=0)
 
         response = ( E_pos - E_neg ) / (2 * amp)
 
@@ -69,7 +69,8 @@ def run(M,
     E_ab_vec = xp.zeros(2*Nmask)
     for i in range(num_iterations):
         
-        E_ab = M.calc_wf()
+        E_ab = M.calc_wfs_camsci(return_all=0)
+        # print(E_ab.shape)
 
         E_ab_vec[::2] = E_ab[control_mask].real
         E_ab_vec[1::2] = E_ab[control_mask].imag
@@ -78,7 +79,7 @@ def run(M,
         total_command += del_command
         M.set_dm(total_command, channel=channel)
 
-        image_ni = M.snap()
+        image_ni = M.snap_camsci()
         mean_ni = xp.mean(image_ni[control_mask])
 
         data['images'].append(copy.copy(image_ni))

@@ -17,7 +17,7 @@ class single():
     def __init__(
             self,
             wavelength_c=650e-9,
-            wavelength=650e-9,  
+            wavelength=None,  
             total_pupil_diam=2.43,
             fsm_beam_diam=9.351e-3,
             dm_beam_diam=9.351e-3,
@@ -57,7 +57,7 @@ class single():
         self.camlo_pxscl = camlo_pxscl
         self.camlo_pxscl_lamDc = self.camlo_pxscl / (self.camlo_fl * self.wavelength_c / self.lyot_pupil_diam)
 
-        self.wavelength = wavelength
+        self.wavelength = wavelength if wavelength is not None else wavelength_c
         self.use_vortex = False
         self.plot_vortex = False
         self.plot_oversample = 1.5
