@@ -1,5 +1,5 @@
 from .math_module import xp, xcipy, ensure_np_array
-from scoob_llowfsc import utils
+from esc_psf import utils
 
 import numpy as np
 import astropy.units as u
@@ -119,7 +119,8 @@ def calibrate(
 def run(I, 
         data,
         control_matrix,
-        probe_modes, probe_amplitude, 
+        probe_modes, 
+        probe_amplitude, 
         calibration_modes,
         control_mask,
         channel=3,
@@ -129,6 +130,7 @@ def run(I,
         plot_current=True,
         plot_all=False,
         vmin=1e-9,
+        vmax=1e-5,
         plot_probes=False,
     ):
     
@@ -169,7 +171,7 @@ def run(I,
                         f'Normalized Image\nMean Contrast = {mean_ni:.3e}'],
                 cmaps=['viridis', 'viridis', 'magma'],
                 pxscls=[None, None, I.camsci_pxscl_lamDc],
-                norms=[CenteredNorm(), None, LogNorm(vmin=vmin)],
+                norms=[CenteredNorm(), None, LogNorm(vmin=vmin, vmax=vmax)],
             )
     
     print('Closed loop for given control matrix completed in {:.3f}s.'.format(time.time()-start))

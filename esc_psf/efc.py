@@ -1,6 +1,5 @@
 from .math_module import xp, xcipy, ensure_np_array
-from esc_fresnel import utils
-from esc_fresnel.imshows import imshow1, imshow2, imshow3
+from esc_psf import utils
 
 import numpy as np
 import astropy.units as u
