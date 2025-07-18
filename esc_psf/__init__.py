@@ -1,4 +1,4 @@
-from . import  math_module, esc_fraunhofer, utils
+from . import  math_module, esc_fraunhofer, utils, wfe
 
 __version__ = '0.1.0'
 

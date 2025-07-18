@@ -1,6 +1,6 @@
 from .math_module import xp, xcipy, ensure_np_array
-from esc_llowfsc import utils
-import esc_llowfsc.props as props
+from esc_psf import utils
+import esc_psf.props as props
 
 import numpy as np
 import astropy.units as u
